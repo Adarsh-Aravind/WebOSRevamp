@@ -1,0 +1,7 @@
+App icons bundled with Glass (used only when the TV doesn't provide the app's own icon)
+
+prime-video.svg  - "Amazon Prime Video logo (2024).svg", Wikimedia Commons, marked public domain.
+jiohotstar.png   - star mark cropped from "JioHotstar 2025.png", Wikimedia Commons, marked public domain.
+
+Netflix, YouTube, Apple TV and Spotify logos come from the Simple Icons package (CC0).
+All names and logos are trademarks of their owners; they are shown only to identify each app.

@@ -1,0 +1,32 @@
+{
+  "name": "glass-home",
+  "version": "1.9.0",
+  "private": true,
+  "description": "Glass: an Apple-style home screen app for LG webOS 6 TVs (no root needed).",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/build.mjs --dev",
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "icons": "node scripts/make-icons.mjs",
+    "tv:setup": "node scripts/tv.mjs setup",
+    "tv:deploy": "node scripts/tv.mjs deploy",
+    "tv:launch": "node scripts/tv.mjs launch",
+    "tv:inspect": "node scripts/tv.mjs inspect",
+    "tv:extend": "node scripts/tv.mjs extend",
+    "tv:uninstall": "node scripts/tv.mjs uninstall",
+    "tv:info": "node scripts/tv.mjs info"
+  },
+  "dependencies": {
+    "preact": "^10.29.8"
+  },
+  "devDependencies": {
+    "@fontsource-variable/geist": "^5.3.0",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/newsreader": "^5.3.0",
+    "@webos-tools/cli": "^3.2.6",
+    "esbuild": "^0.28.2",
+    "simple-icons": "^16.37.0",
+    "typescript": "^7.0.2"
+  }
+}

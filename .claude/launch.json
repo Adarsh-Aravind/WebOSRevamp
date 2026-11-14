@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "glass-dev",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["scripts/build.mjs", "--dev"],
+      "port": 5173
+    }
+  ]
+}

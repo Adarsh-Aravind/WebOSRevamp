@@ -1,0 +1,212 @@
+/* Screen saver + welcome screen. Photos use slow Ken Burns drifts (transform only = smooth on TV). */
+
+.saver,
+.welcome {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  background: #000;
+  overflow: hidden;
+  cursor: none;
+  animation: fade-in 0.9s var(--ease) both;
+}
+.saver.leaving {
+  animation: fade-out 0.45s var(--ease) both;
+}
+
+/* while a full-screen layer is up, stop the home screen's own animations (saves GPU) */
+.saver-on .wp-layer,
+.saver-on .shelf-card,
+.saver-on .shelf-ghost {
+  animation-play-state: paused;
+}
+
+.saver-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: slide-in 2.2s var(--ease) both;
+}
+.saver-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+.saver-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: slide-in 1.6s var(--ease) both;
+}
+@keyframes slide-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.kb-a { animation: kb-a 30s linear both; }
+.kb-b { animation: kb-b 30s linear both; }
+.kb-c { animation: kb-c 30s linear both; }
+.kb-d { animation: kb-d 30s linear both; }
+@keyframes kb-a {
+  from { transform: scale(1.02) translate3d(0, 0, 0); }
+  to { transform: scale(1.07) translate3d(-2.5%, -1.5%, 0); }
+}
+@keyframes kb-b {
+  from { transform: scale(1.07) translate3d(2%, 1%, 0); }
+  to { transform: scale(1.02) translate3d(0, 0, 0); }
+}
+@keyframes kb-c {
+  from { transform: scale(1.02) translate3d(2%, -1%, 0); }
+  to { transform: scale(1.075) translate3d(-1.5%, 1.5%, 0); }
+}
+@keyframes kb-d {
+  from { transform: scale(1.065) translate3d(-2%, 1.5%, 0); }
+  to { transform: scale(1.01) translate3d(1.5%, -1%, 0); }
+}
+
+.saver-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 32%);
+  pointer-events: none;
+}
+.saver-clock {
+  position: absolute;
+  left: 80px;
+  bottom: 70px;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+}
+.saver-time {
+  font-size: 96px;
+  font-weight: 300;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+.saver-date {
+  margin-top: 10px;
+  font-size: 28px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+}
+.saver-credit {
+  position: absolute;
+  right: 80px;
+  bottom: 74px;
+  max-width: 800px;
+  text-align: right;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+  animation: slide-in 2s var(--ease) 0.8s both;
+}
+
+/* ---------------------------------------------------------------- welcome */
+
+.welcome {
+  animation: none;
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.welcome.leaving {
+  opacity: 0;
+  transform: scale(1.06);
+}
+/* intro zoom-out, then a very slow endless drift so the picture never sits perfectly still */
+.kb-welcome {
+  animation: kb-welcome 9s cubic-bezier(0.25, 0.6, 0.3, 1) both, kb-welcome-idle 60s ease-in-out 9s infinite alternate;
+}
+@keyframes kb-welcome-idle {
+  from { transform: scale(1.02) translate3d(0, 0, 0); }
+  to { transform: scale(1.06) translate3d(-1.5%, -1%, 0); }
+}
+.welcome-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 74px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+  animation: hint-in 1.2s var(--ease) 3s both, hint-breathe 3.2s ease-in-out 4.2s infinite alternate;
+}
+@keyframes hint-in {
+  from { opacity: 0; transform: translate3d(0, 10px, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes hint-breathe {
+  from { opacity: 1; }
+  to { opacity: 0.45; }
+}
+@keyframes kb-welcome {
+  from { transform: scale(1.08); }
+  to { transform: scale(1.02); }
+}
+.welcome-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(70% 70% at 50% 50%, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+.welcome-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 4px 40px rgba(0, 0, 0, 0.45);
+}
+.welcome-greeting {
+  font-size: 40px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  animation: welcome-up 1.2s var(--ease) 0.3s both;
+}
+.welcome-time {
+  margin-top: 6px;
+  font-size: 200px;
+  font-weight: 200;
+  letter-spacing: -6px;
+  line-height: 1;
+  animation: welcome-up 1.3s var(--ease) 0.45s both;
+}
+.welcome-date {
+  margin-top: 18px;
+  font-size: 30px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  animation: welcome-up 1.3s var(--ease) 0.6s both;
+}
+@keyframes welcome-up {
+  from { opacity: 0; transform: translate3d(0, 24px, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+.reduce-motion .saver-img,
+.reduce-motion .kb-welcome {
+  animation: none !important;
+  transform: scale(1.02);
+}
